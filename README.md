@@ -1,2 +1,1 @@
-# bmt-mailer
-Mailer app for BMT Broadcasting Message
+BMT-Mailer web app untuk bmt marketing
