@@ -1,0 +1,249 @@
+{% extends "dashboard-layout.twig" %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="page-header">
+			<h1>Group Contact List</h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="alert alert-success bootstrap-admin-alert hidden">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<h4>Success</h4>
+			The operation completed successfully
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div id="modal-list" class="iziModal">
+			<form id='add-list' class="form-horizontal" method="post" action="/list" style="padding:20px">
+				<div class="form-group">
+					<input type="hidden" name="id" id="e_id">
+					<label class="col-lg-2 control-label" for="nama">Nama</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="nama" name="nama" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+						<label class="col-lg-2 control-label" for="alias">Alias</label>
+						<div class="col-lg-10">
+								<input class="form-control" id="alias" name="alias" type="text" placeholder="ex:your_alias">
+						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="desc">Deskripsi</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" id="desc" name="desc"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="company">Perusahaan</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="company" name="company" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="alamat">Alamat</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="alamat" name="alamat" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="kota">Kota</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="kota" name="kota" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="kodepos">Kode Pos</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="kodepos" name="kodepos" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="negara">Negara</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="negara" name="negara" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="telp">No. Telp</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="telp" name="telp" type="number">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="notif">Receive Notification</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="notif" name="notif">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<button class="btn btn-xs btn-primary" >Tambah</button>&nbsp;<a class="btn btn-xs btn-warning" onclick="$('#modal-list').iziModal('close');">Batal</a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<div id="list-edit" class="iziModal">
+			<form id='editlist' class="form-horizontal" method="post" action="/list/".{{ list_id }}."/update" style="padding:20px">
+				<div class="form-group">
+					<input type="hidden" name="id" id="e_id">
+					<label class="col-lg-2 control-label" for="e_nama">Nama</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_nama" name="nama" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+						<label class="col-lg-2 control-label" for="e_alias">Alias</label>
+						<div class="col-lg-10">
+								<input class="form-control" id="e_alias" name="alias" type="text" placeholder="ex:your_alias">
+						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_desc">Deskripsi</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" id="e_desc" name="desc"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_company">Perusahaan</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_company" name="company" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_alamat">Alamat</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_alamat" name="alamat" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_kota">Kota</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_kota" name="kota" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_kodepos">Kode Pos</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_kodepos" name="kodepos" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_negara">Negara</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_negara" name="negara" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_telp">No. Telp</label>
+					<div class="col-lg-10">
+						<input class="form-control" id="e_telp" name="telp" type="number">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="e_notif">Receive Notification</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="e_notif" name="notif">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<button class="btn btn-xs btn-primary" >Tambah</button>&nbsp;<a class="btn btn-xs btn-warning" onclick="$('#list-edit').iziModal('close');">Batal</a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="navbar navbar-default bootstrap-admin-navbar-thin">
+			<ol class="breadcrumb bootstrap-admin-breadcrumb">
+				<li>
+					<a href="#">Dashboard</a>
+				</li>
+				<li>
+					<a href="#">Manage</a>
+				</li>
+				<li class="active">List</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="text-muted bootstrap-admin-box-title">Group List | <a class="btn btn-xs btn-primary list-link">Add</a>&nbsp;<button class="btn btn-xs btn-success" id="edit-list">Edit</button>&nbsp;<button class="btn btn-xs btn-warning" onclick="del_list()">Delete</button></div>
+			</div>
+			<div class="bootstrap-admin-panel-content">
+				<table class="table table-bordered" id="list-dt">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nama</th>
+							<th>Alias</th>
+							<th>Deskripsi</th>
+							<th>Perusahaan</th>
+							<th>Alamat</th>
+							<th>Kota</th>
+							<th>Kode Pos</th>
+							<th>Negara</th>
+							<th>No. Telp</th>
+							<th>Notification</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for list in datalist %}
+						<tr class="odd gradeX edit-table" id={{ list._id }}>
+							<td>{{ list._id }}</td>
+							<td>{{ list.list_nama }}</td>
+							<td>{{ list.list_id }}</td>
+							<td>{{ list.deskripsi }}</td>
+							<td>{{ list.perusahaan }}</td>
+							<td>{{ list.alamat }}</td>
+							<td>{{ list.kota }}</td>
+							<td>{{ list.kode_pos }}</td>
+							<td>{{ list.negara }}</td>
+							<td class="center">{{ list.no_telp }}</td>
+							<td class="center">{{ list.notif }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+
+{% block addScript %}
+<script type="text/javascript" src="vendors/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/DT_bootstrap.js"></script>
+<script>
+    $('.manager li:eq(1)').addClass('active');
+</script>
+{% endblock %}

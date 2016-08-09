@@ -1,0 +1,155 @@
+{% extends "dashboard-layout.twig" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1>Kontak</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="modal-demo" class="iziModal">
+            <form id='add-kontak' class="form-horizontal" method="post" action="/kontak" style="padding:20px">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="nama">Nama</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="nama" name="nama" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="email">Email</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="email" name="email" type="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="telp">No. Telp</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="telp" name="telp" type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="alamat">Alamat</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="alamat" name="alamat" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-xs btn-primary" >Tambah</button>&nbsp;<a class="btn btn-xs btn-warning" onclick="$('#modal-edit').iziModal('close');">Batal</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div id="modal-edit" class="iziModal">
+            <form id='add-kontak' class="form-horizontal" method="post" action="/kontak/".{{ kontak_id }}."/update" style="padding:20px">
+                <div class="form-group">
+                    <input type="hidden" name="id" id="e_id">
+                    <label class="col-lg-2 control-label" for="nama">Nama</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="e_nama" name="nama" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="e_email">Email</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="e_email" name="email" type="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="e_telp">No. Telp</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="e_telp" name="telp" type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="e_alamat">Alamat</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="e_alamat" name="alamat" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-xs btn-primary" >Tambah</button>&nbsp;<a class="btn btn-xs btn-warning" onclick="$('#modal-edit').iziModal('close');">Batal</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success bootstrap-admin-alert hidden">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Success</h4>
+            Kontak baru berhasil ditambahkan
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="navbar navbar-default bootstrap-admin-navbar-thin">
+            <ol class="breadcrumb bootstrap-admin-breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Manage</a>
+                </li>
+                <li class="active">Kontak</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Bootstrap dataTables | <a class="btn btn-xs btn-primary trigger-link">Add</a>&nbsp;<button class="btn btn-xs btn-success" id="edit-link">Edit</button>&nbsp;<button class="btn btn-xs btn-warning" onclick="del()">Delete</button></div>
+            </div>
+            <div class="bootstrap-admin-panel-content">
+                <table class="table table-bordered" id="example">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>No. Telp</th>
+                            <th>Alamat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for kontak in data %}
+                        <tr class="odd gradeX tablemark" id={{ kontak._id }}>
+                            <td>{{ kontak._id }}</td>
+                            <td>{{ kontak.nama }}</td>
+                            <td>{{ kontak.email }}</td>
+                            <td class="center">{{ kontak.telp }}</td>
+                            <td class="center">{{ kontak.alamat }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block addScript %}
+<script type="text/javascript" src="vendors/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/DT_bootstrap.js"></script>
+<script>
+    $('.manager li:eq(0)').addClass('active');
+</script>
+{% endblock %}
