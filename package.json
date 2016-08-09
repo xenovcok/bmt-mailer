@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "bmt-mailer",
   "version": "10.3.2",
@@ -34,3 +35,41 @@
   },
   "homepage": "https://gitlab.com/xenovcok/bmt-mailer#README"
 }
+=======
+{
+  "name": "bmt-mailer",
+  "version": "10.3.2",
+  "description": "Bmt mailer application",
+  "author": "xenov <danar.Jati@gmail.com>",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "startdev": "nodemon --use_strict app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.6",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "mongoose": "^4.5.5",
+    "nodemailer": "^2.5.0",
+    "nodemailer-smtp-pool": "^2.7.0",
+    "twig": "^0.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/xenovcok/bmt-mailer.git"
+  },
+  "keywords": [
+    "expressjss"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/xenovcok/bmt-mailer/issues"
+  },
+  "homepage": "https://gitlab.com/xenovcok/bmt-mailer#README"
+}
+>>>>>>> fec08cb8d6b1d0f324a8ffeae1c4ee501b717f0b
